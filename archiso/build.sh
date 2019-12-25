@@ -2,11 +2,11 @@
 
 set -e -u
 
-iso_name=arcolinux
-iso_label="arcolinux-comp-v19.12.16"
+iso_name=arcolinux-comp
+iso_label="arcolinux-comp-v20.1.1"
 iso_publisher="ArcoLinux <http://www.arcolinux.info>"
 iso_application="ArcoLinux Live/Rescue CD"
-iso_version="v19.12.16"
+iso_version="v20.1.1"
 install_dir=arch
 work_dir=work
 out_dir=out
@@ -148,6 +148,7 @@ make_boot_extra() {
     cp ${work_dir}/x86_64/airootfs/boot/amd-ucode.img ${work_dir}/iso/${install_dir}/boot/amd_ucode.img
     cp ${work_dir}/x86_64/airootfs/usr/share/licenses/amd-ucode/LICENSE ${work_dir}/iso/${install_dir}/boot/amd_ucode.LICENSE
 }
+sleep 1000000
 
 # Prepare /${install_dir}/boot/syslinux
 make_syslinux() {

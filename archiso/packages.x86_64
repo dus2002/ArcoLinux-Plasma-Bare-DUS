@@ -610,8 +610,8 @@ arcolinux-dconf-git
 ###########################################################################
 
 #arco-calamares
-#arco-calamares-dev
-arco-calamares-comp
+arco-calamares-dev
+#arco-calamares-comp
 arcolinux-system-installation-git
 
 ###########################################################################
@@ -657,8 +657,8 @@ qt5-xmlpatterns
 #arcob-calamares-config-xmonad-git
 #arcob-calamares-config-xtended-git
 #arco-calamares-config-git
-arco-calamares-config-comp-git
-#arco-calamares-config-dev-git
+#arco-calamares-config-comp-git
+arco-calamares-config-dev-git
 #arcod-calamares-config-git
 #arcod-calamares-config-comp-git
 #arcod-calamares-config-dev-git
