@@ -148,7 +148,7 @@ make_boot_extra() {
     cp ${work_dir}/x86_64/airootfs/boot/amd-ucode.img ${work_dir}/iso/${install_dir}/boot/amd_ucode.img
     cp ${work_dir}/x86_64/airootfs/usr/share/licenses/amd-ucode/LICENSE ${work_dir}/iso/${install_dir}/boot/amd_ucode.LICENSE
 }
-sleep 1000000
+
 
 # Prepare /${install_dir}/boot/syslinux
 make_syslinux() {
