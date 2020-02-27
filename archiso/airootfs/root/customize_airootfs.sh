@@ -17,6 +17,20 @@ function deleteXfceWallpapers() {
     rm -rf /usr/share/backgrounds/xfce
 }
 
+function AURInstalls() {
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git pamac-aur pamac-tray-appindicator peazip-gtk2-portable gnome-system-tools
+}
+
+function Snapd() {
+	sudo -u liveuser yay --noconfirm -S snapd
+	systemctl enable snapd.socket
+	sudo ln -s /var/lib/snapd/snap /snap
+}
+
+function RootShell() {
+    bash
+}
+
 function umaskFunc() {
     set -e -u
     umask 022
@@ -127,10 +141,12 @@ function initkeysFunc() {
 }
 
 function getNewMirrorCleanAndUpgrade() {
-    reflector --threads 50 -l 100 -f 100 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
+    #reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
+    reflector -f 30 -l 30 --number 10 --save /etc/pacman.d/mirrorlist
     pacman -Sc --noconfirm
     pacman -Syyu --noconfirm
 }
+
 
 deleteXfceWallpapers
 layout deleteXfceWallpapers
@@ -146,6 +162,10 @@ configRootUserFunc
 layout configRootUserFunc
 createLiveUserFunc
 layout createLiveUserFunc
+AURInstalls
+layout AURInstalls
+Snapd
+layout Snapd
 setDefaultsFunc
 layout setDefaultsFunc
 fixHavegedFunc
@@ -162,3 +182,4 @@ initkeysFunc
 layout initkeysFunc
 getNewMirrorCleanAndUpgrade
 layout getNewMirrorCleanAndUpgrade
+RootShell
