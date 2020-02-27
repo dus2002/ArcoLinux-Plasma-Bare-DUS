@@ -15,7 +15,7 @@
 #LogFile     = /var/log/pacman.log
 #GPGDir      = /etc/pacman.d/gnupg/
 #HookDir     = /etc/pacman.d/hooks/
-HoldPkg      = pacman glibc
+HoldPkg     = pacman glibc
 #XferCommand = /usr/bin/curl -C - -f %u > %o
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
@@ -39,9 +39,9 @@ ILoveCandy
 
 # By default, pacman accepts packages signed by keys that its local keyring
 # trusts (see pacman-key and its man page), as well as unsigned packages.
-SigLevel    = Required DatabaseOptional
-LocalFileSigLevel = Optional
-#RemoteFileSigLevel = Required
+SigLevel    = Never
+LocalFileSigLevel = Never
+#RemoteFileSigLevel = Never
 
 # NOTE: You must run `pacman-key --init` before first using pacman; the local
 # keyring can then be populated with the keys of all official Arch Linux
@@ -101,17 +101,21 @@ Include = /etc/pacman.d/mirrorlist
 #Server = file:///home/custompkgs
 
 #[arcolinux_repo_testing]
-#SigLevel = Required DatabaseOptional
+#SigLevel = Never
 #Include = /etc/pacman.d/arcolinux-mirrorlist
 
 [arcolinux_repo]
-SigLevel = Required DatabaseOptional
+SigLevel = Never
 Include = /etc/pacman.d/arcolinux-mirrorlist
 
 [arcolinux_repo_3party]
-SigLevel = Required DatabaseOptional
+SigLevel = Never
 Include = /etc/pacman.d/arcolinux-mirrorlist
 
 [arcolinux_repo_xlarge]
-SigLevel = Required DatabaseOptional
+SigLevel = Never
+Include = /etc/pacman.d/arcolinux-mirrorlist
+
+[arcolinux_repo_iso]
+SigLevel = Never
 Include = /etc/pacman.d/arcolinux-mirrorlist
