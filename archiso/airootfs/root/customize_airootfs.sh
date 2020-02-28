@@ -187,4 +187,6 @@ initkeysFunc
 layout initkeysFunc
 getNewMirrorCleanAndUpgrade
 layout getNewMirrorCleanAndUpgrade
+Calamares
+layout Calamares
 #RootShell
