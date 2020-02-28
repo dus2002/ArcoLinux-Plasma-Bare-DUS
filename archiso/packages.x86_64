@@ -1082,6 +1082,8 @@ sardi-icons
 sbc
 screen
 scrot
+sddm
+sddm-kcm
 sdl
 sdl2
 sdparm
@@ -1144,10 +1146,6 @@ texlive-core
 the_platinum_searcher-bin
 thin-provisioning-tools
 threadweaver
-thunar
-thunar-archive-plugin
-thunar-media-tags-plugin
-thunar-volman
 tolua++
 tree
 tslib
