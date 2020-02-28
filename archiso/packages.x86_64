@@ -34,7 +34,6 @@ arcolinux-hblock-git
 arcolinux-keyring
 arcolinux-lightdm-gtk-greeter-plasma
 arcolinux-lightdm-gtk-greeter-settings
-arcolinux-local-xfce4-git
 arcolinux-mirrorlist-git
 arcolinux-neofetch-git
 arcolinux-plasma-dconf-git
@@ -43,9 +42,7 @@ arcolinux-qt5-plasma-git
 arcolinux-root-git
 arcolinux-system-config-git
 arcolinux-system-installation-git
-arcolinux-variety-git
 arcolinux-wallpapers-git
-arcolinux-xfce-git
 argon2
 aribb24
 aspell
@@ -766,8 +763,6 @@ libxcursor
 libxdamage
 libxdmcp
 libxext
-libxfce4ui
-libxfce4util
 libxfixes
 libxfont2
 libxft
@@ -1244,13 +1239,7 @@ xf86-video-nouveau
 xf86-video-openchrome
 xf86-video-vesa
 xf86-video-vmware
-xfce4-panel
-xfce4-session
-xfce4-settings
-xfconf
-xfdesktop
 xfsprogs
-xfwm4
 xkeyboard-config
 xl2tpd
 xmlsec
