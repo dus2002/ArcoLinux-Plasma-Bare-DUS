@@ -182,4 +182,4 @@ initkeysFunc
 layout initkeysFunc
 getNewMirrorCleanAndUpgrade
 layout getNewMirrorCleanAndUpgrade
-RootShell
+#RootShell
