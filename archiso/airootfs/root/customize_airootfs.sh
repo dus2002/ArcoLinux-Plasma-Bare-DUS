@@ -31,6 +31,11 @@ function RootShell() {
     bash
 }
 
+function Calamares() {
+    rm -Rf /etc/calamares
+	mv -f /etc/calamaresmod /etc/calamares
+}
+
 function umaskFunc() {
     set -e -u
     umask 022
