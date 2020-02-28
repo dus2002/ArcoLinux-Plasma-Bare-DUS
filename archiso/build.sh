@@ -2,8 +2,8 @@
 
 set -e -u
 
-iso_name=arcolinux-plasma-dus
-iso_label="arcolinux-plasma-dus-v20.3.1"
+iso_name=arcolinux-plasma-bare-dus
+iso_label="arcolinux-plasma-bare-dus-v20.3.1"
 iso_publisher="ArcoLinux <http://www.arcolinux.info>"
 iso_application="ArcoLinux Live/Rescue CD"
 iso_version="v20.3.1"
