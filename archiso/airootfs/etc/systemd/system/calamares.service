@@ -4,3 +4,6 @@ Description=Mount directory for calamares configs
 [Service]
 Type=oneshot
 ExecStart=sudo mount -o ro,bind /etc/calamaresmod /etc/calamares
+
+[Install]
+WantedBy=system

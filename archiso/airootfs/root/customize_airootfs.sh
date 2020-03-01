@@ -168,9 +168,9 @@ configRootUserFunc
 layout configRootUserFunc
 createLiveUserFunc
 layout createLiveUserFunc
-AURInstalls
-layout AURInstalls
-Snapd
+#AURInstalls
+#layout AURInstalls
+#Snapd
 layout Snapd
 setDefaultsFunc
 layout setDefaultsFunc
