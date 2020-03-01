@@ -6,4 +6,4 @@ Type=oneshot
 ExecStart=sudo mount -o ro,bind /etc/calamaresmod /etc/calamares
 
 [Install]
-WantedBy=system
+WantedBy=multi-user.target
