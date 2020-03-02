@@ -2,11 +2,11 @@
 
 set -e -u
 
-iso_name=arcolinux-plasma-bare-dus
+iso_name="arcolinux-plasma-bare-dus"
+iso_version="v20.3.1"
 iso_label="al-plasma-bare-dus-${iso_version}"
 iso_publisher="ArcoLinux <http://www.arcolinux.info>"
 iso_application="ArcoLinux Live/Rescue CD"
-iso_version="v20.3.1"
 install_dir=arch
 work_dir=work
 out_dir=out
