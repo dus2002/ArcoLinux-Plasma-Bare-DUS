@@ -31,11 +31,6 @@ function RootShell() {
     bash
 }
 
-function Calamares() {
-    rm -Rf /etc/calamares
-	mv -f /etc/calamaresmod /etc/calamares
-}
-
 function umaskFunc() {
     set -e -u
     umask 022
@@ -168,9 +163,9 @@ configRootUserFunc
 layout configRootUserFunc
 createLiveUserFunc
 layout createLiveUserFunc
-#AURInstalls
-#layout AURInstalls
-#Snapd
+AURInstalls
+layout AURInstalls
+Snapd
 layout Snapd
 setDefaultsFunc
 layout setDefaultsFunc
@@ -188,6 +183,4 @@ initkeysFunc
 layout initkeysFunc
 getNewMirrorCleanAndUpgrade
 layout getNewMirrorCleanAndUpgrade
-#Calamares
-#layout Calamares
 #RootShell
