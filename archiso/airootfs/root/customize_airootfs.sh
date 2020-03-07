@@ -18,7 +18,7 @@ function deleteXfceWallpapers() {
 }
 
 function AURInstalls() {
-	sudo -u liveuser yay --noconfirm -S dolphin-root-git pamac-aur peazip-qt qt4pas-mirror kde-servicemenus-peazip gnome-system-tools
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git pamac-aur-git pamac-aur-tray-appindicator-git peazip-qt qt4pas-mirror kde-servicemenus-peazip gnome-system-tools
 }
 function Snapd() {
 	sudo -u liveuser yay --noconfirm -S snapd
