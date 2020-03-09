@@ -79,7 +79,6 @@ boost-libs
 breeze
 breeze-gtk
 breeze-icons
-$linux-broadcom-wl
 brotli
 btrfs-progs
 bubblewrap
@@ -789,8 +788,6 @@ libzip
 libzmf
 licenses
 lightdm
-$linux
-$linux-headers
 linux-api-headers
 linux-atm
 linux-firmware
