@@ -814,6 +814,9 @@ mailcap
 make
 man-db
 man-pages
+manjaro-settings-manager
+manjaro-settings-manager-knotifier
+manjaro-settings-manager-kcm
 mariadb
 mariadb-clients
 mariadb-libs
