@@ -18,7 +18,7 @@ function deleteXfceWallpapers() {
 }
 
 function AURInstalls() {
-	sudo -u liveuser yay --noconfirm -S dolphin-root-git octopi-dev octopi-notifier-frameworks p7zip-gui gnome-system-tools
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git octopi-dev octopi-notifier-qt5 p7zip-gui gnome-system-tools
 }
 function Snapd() {
 	sudo -u liveuser yay --noconfirm -S snapd
