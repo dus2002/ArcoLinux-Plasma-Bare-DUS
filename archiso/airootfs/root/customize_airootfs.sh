@@ -18,12 +18,16 @@ function deleteXfceWallpapers() {
 }
 
 function AURInstalls() {
-	sudo -u liveuser yay --noconfirm -S dolphin-root-git octopi-dev octopi-notifier-qt5 p7zip-gui gnome-system-tools
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git p7zip-gui
 }
 function Snapd() {
 	sudo -u liveuser yay --noconfirm -S snapd
 	systemctl enable snapd.socket
 	sudo ln -s /var/lib/snapd/snap /snap
+}
+
+function Archiso() {
+	pacman -U https://www.archlinux.org/packages/extra/any/archiso/download/
 }
 
 function RootShell() {
@@ -165,6 +169,8 @@ createLiveUserFunc
 layout createLiveUserFunc
 AURInstalls
 layout AURInstalls
+Archiso
+layout Archiso
 Snapd
 layout Snapd
 setDefaultsFunc

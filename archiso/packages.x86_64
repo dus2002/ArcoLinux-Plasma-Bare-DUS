@@ -901,6 +901,10 @@ pacman
 pacman-mirrors
 pacutils
 pam
+pamac-gtk
+pamac-snap-plugin
+pamac-flatpak-plugin
+pamac-tray-appindicator
 pambase
 pango
 pangomm
