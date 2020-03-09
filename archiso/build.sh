@@ -11,6 +11,7 @@ install_dir=arch
 work_dir=work
 out_dir=out
 gpg_key=
+linux=linux55
 
 verbose=""
 script_path=$(readlink -f ${0%/*})
