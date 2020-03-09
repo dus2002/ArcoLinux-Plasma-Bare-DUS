@@ -146,8 +146,7 @@ function initkeysFunc() {
 }
 
 function getNewMirrorCleanAndUpgrade() {
-    #reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist
-    reflector -f 30 -l 30 --number 10 --save /etc/pacman.d/mirrorlist
+    pacman-mirrors -a -m rank -t 5 -S unstable
     pacman -Sc --noconfirm
     pacman -Syyu --noconfirm
 }
