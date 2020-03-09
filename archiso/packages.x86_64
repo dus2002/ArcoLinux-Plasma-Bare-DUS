@@ -1,3 +1,4 @@
+linux=linux55
 a52dec
 aalib
 accounts-qml-module
@@ -20,7 +21,6 @@ appstream-glib
 appstream-qt
 arc-gtk-theme
 arch-install-scripts
-archiso
 archlinux-appstream-data
 archlinux-keyring
 arco-calamares
@@ -80,7 +80,7 @@ boost-libs
 breeze
 breeze-gtk
 breeze-icons
-broadcom-wl
+$linux-broadcom-wl
 brotli
 btrfs-progs
 bubblewrap
@@ -790,7 +790,8 @@ libzip
 libzmf
 licenses
 lightdm
-linux
+$linux
+$linux-headers
 linux-api-headers
 linux-atm
 linux-firmware
@@ -897,8 +898,7 @@ oxygen
 p7zip
 p11-kit
 pacman
-pacman-contrib
-pacman-mirrorlist
+pacman-mirrors
 pacutils
 pam
 pambase
@@ -1065,7 +1065,6 @@ re2
 readline
 redland
 refind-efi
-reflector
 reiserfsprogs
 rest
 rhash
@@ -1181,7 +1180,6 @@ user-manager
 util-linux
 vi
 vid.stab
-virtualbox-guest-modules-arch
 virtualbox-guest-utils
 volume_key
 vpnc
