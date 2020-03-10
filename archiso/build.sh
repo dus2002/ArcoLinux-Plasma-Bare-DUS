@@ -86,7 +86,7 @@ make_packages() {
 # Copy mkinitcpio archiso hooks and build initramfs (airootfs)
 make_setup_mkinitcpio() {
     echo "###################################################################"
-    tput setaf 3;echo "4. Copy mkinitcpio archiso hooks and build initramfs (airootfs)";tput sgr0
+    tput setaf 3;echo "5. Copy mkinitcpio archiso hooks and build initramfs (airootfs)";tput sgr0
     echo "###################################################################"
     local _hook
     mkdir -p ${work_dir}/x86_64/airootfs/etc/initcpio/hooks
@@ -104,7 +104,7 @@ make_setup_mkinitcpio() {
       gpg --export ${gpg_key} >${work_dir}/gpgkey
       exec 17<>${work_dir}/gpgkey
     fi
-    ARCHISO_GNUPG_FD=${gpg_key:+17} mkarchiso ${verbose} -w "${work_dir}/x86_64" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-$linux -g /boot/archiso.img' run
+    ARCHISO_GNUPG_FD=${gpg_key:+17} mkarchiso ${verbose} -w "${work_dir}/x86_64" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux -g /boot/archiso.img' run
     if [[ ${gpg_key} ]]; then
       exec 17<&-
     fi
@@ -113,7 +113,7 @@ make_setup_mkinitcpio() {
 # Customize installation (airootfs)
 make_customize_airootfs() {
     echo "###################################################################"
-    tput setaf 3;echo "5. Customize installation (airootfs)";tput sgr0
+    tput setaf 3;echo "4. Customize installation (airootfs)";tput sgr0
     echo "###################################################################"
     cp -af ${script_path}/airootfs ${work_dir}/x86_64
 
@@ -254,8 +254,8 @@ mkdir -p ${work_dir}
 run_once make_pacman_conf
 run_once make_basefs
 run_once make_packages
-run_once make_setup_mkinitcpio
 run_once make_customize_airootfs
+run_once make_setup_mkinitcpio
 run_once make_boot
 run_once make_boot_extra
 run_once make_syslinux

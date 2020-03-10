@@ -3,6 +3,7 @@
 # User = liveuser
 # Password = empty
 count=0
+linux=linux55
 
 function layout() {
     count=$[count+1]
@@ -28,6 +29,10 @@ function Snapd() {
 
 function Archiso() {
 	pacman -U https://www.archlinux.org/packages/extra/any/archiso/download/
+}
+
+function Kernel() {
+    ln -s /boot/vmlinuz-$linux /boot/vmlinuz-linux
 }
 
 function RootShell() {
@@ -166,6 +171,8 @@ configRootUserFunc
 layout configRootUserFunc
 createLiveUserFunc
 layout createLiveUserFunc
+Kernel
+layout Kernel
 AURInstalls
 layout AURInstalls
 Archiso
