@@ -170,6 +170,7 @@ file
 filesystem
 findutils
 flac
+flatpak
 flex
 fontconfig
 frameworkintegration
@@ -1100,6 +1101,7 @@ signond
 slang
 smartmontools
 smbclient
+snapd
 snappy
 socat
 solid
