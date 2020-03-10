@@ -27,7 +27,7 @@ function Archiso() {
 }
 
 function Kernel() {
-    ln -s /boot/vmlinuz-$linux /boot/vmlinuz-linux
+    cp /boot/vmlinuz-$linux /boot/vmlinuz-linux
 }
 
 function RootShell() {
