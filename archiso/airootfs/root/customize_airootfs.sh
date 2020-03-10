@@ -4,6 +4,7 @@
 # Password = empty
 count=0
 linux=linux55
+linuxnumber=5.5
 
 function layout() {
     count=$[count+1]
@@ -27,7 +28,7 @@ function Archiso() {
 }
 
 function Kernel() {
-    cp /boot/vmlinuz-$linux-$(uname -m) /boot/vmlinuz-linux
+    cp /boot/vmlinuz-$linuxnumber-$(uname -m) /boot/vmlinuz-linux
 }
 
 function RootShell() {
