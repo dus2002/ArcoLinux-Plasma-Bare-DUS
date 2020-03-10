@@ -27,11 +27,12 @@ function Archiso() {
 }
 
 function Kernel() {
-    cp /boot/vmlinuz-$linux /boot/vmlinuz-linux
+    ln -s /boot/vmlinuz-$linux-$(uname -m) /boot/vmlinuz-linux
 }
 
 function RootShell() {
     bash
+	exit
 }
 
 function umaskFunc() {
@@ -152,6 +153,7 @@ function getNewMirrorCleanAndUpgrade() {
 }
 
 
+#RootShell
 deleteXfceWallpapers
 layout deleteXfceWallpapers
 umaskFunc
@@ -188,4 +190,4 @@ initkeysFunc
 layout initkeysFunc
 getNewMirrorCleanAndUpgrade
 layout getNewMirrorCleanAndUpgrade
-#RootShell
+
