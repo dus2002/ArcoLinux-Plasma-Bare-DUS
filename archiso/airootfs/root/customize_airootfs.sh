@@ -28,7 +28,7 @@ function Archiso() {
 }
 
 function Kernel() {
-    cp /boot/vmlinuz-$linuxnumber-$(uname -m) /boot/vmlinuz-linux
+    sed -i 's/*/linux55/g' /etc/calamaresmod/modules/initcpio.conf
 }
 
 function RootShell() {
