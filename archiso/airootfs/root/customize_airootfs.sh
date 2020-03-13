@@ -24,11 +24,13 @@ function AURInstalls() {
 }
 
 function Archiso() {
-	pacman -U https://www.archlinux.org/packages/extra/any/archiso/download/
+	pacman -U --noconfirm https://www.archlinux.org/packages/extra/any/archiso/download/
 }
 
 function Kernel() {
     sed -i 's/*/linux55/g' /etc/calamaresmod/modules/initcpio.conf
+	touch /linux
+	echo $linuxnumber > /linux
 }
 
 function RootShell() {
