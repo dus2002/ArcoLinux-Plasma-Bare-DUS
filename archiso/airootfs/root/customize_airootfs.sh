@@ -28,7 +28,7 @@ function Archiso() {
 }
 
 function Kernel() {
-    sed -i 's/*/linux55/g' /etc/calamaresmod/modules/initcpio.conf
+    sed -i 's/*/$linux/g' /etc/calamaresmod/modules/initcpio.conf
 	touch /linux
 	echo $linuxnumber > /linux
 }
