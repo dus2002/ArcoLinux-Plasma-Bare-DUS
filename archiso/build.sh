@@ -11,14 +11,15 @@ install_dir=arch
 work_dir=work
 out_dir=out
 gpg_key=
-arch=$(uname -m)
+verbose=""
+script_path=$(readlink -f ${0%/*})
+arch=$(ls $script_path/packages* | cut -d "." -f2)
 linux=$(pacman -Qq linux)
 linuxnumber=$(ls /boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
 kernelversion=$(uname -r)
 
 
-verbose=""
-script_path=$(readlink -f ${0%/*})
+
 
 umask 0022
 
@@ -60,6 +61,8 @@ tput setaf 3;echo "0. start of the build script";tput sgr0
 echo "###################################################################"
 
 
+
+
 # Setup custom pacman.conf with current cache directories.
 make_pacman_conf() {
     echo "###################################################################"
@@ -68,6 +71,13 @@ make_pacman_conf() {
     local _cache_dirs
     _cache_dirs=($(pacman -v 2>&1 | grep '^Cache Dirs:' | sed 's/Cache Dirs:\s*//g'))
     sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${work_dir}/pacman.conf
+    cp -af ${script_path}/airootfs/root/customize_airootfs.sh ${work_dir}/$arch/root/customized_installation.sh
+    for $arch in $(cat ${script_path}/arch) do
+         echo "Patching files to install using $arch"
+         cat ${work_dir}/$arch/root/customized_installation.sh | sed -i "s/defaultarch/$arch/g" > ${work_dir}/$arch/root/customized_installation.sh
+         sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/$arch/pacman.conf > ${work_dir}/pacman.conf
+         iso_label="al-plasma-bare-dus-${iso_version}-$arch"
+    done
     cp ${script_path}/mkinitcpio.conf ${work_dir}/$arch/airootfs/etc/mkinitcpio.conf
 }
 
@@ -121,16 +131,17 @@ make_customize_airootfs() {
     echo "###################################################################"
     tput setaf 3;echo "4. Customize installation (airootfs)";tput sgr0
     echo "###################################################################"
+    
     cp -af ${script_path}/airootfs ${work_dir}/$arch
 
     cp ${script_path}/pacman.conf.work_dir ${work_dir}/$arch/airootfs/etc/pacman.conf
 
-    curl -o ${work_dir}/$arch/airootfs/etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=all&protocol=http&use_mirror_status=on'
 
     #lynx -dump -nolist 'https://wiki.archlinux.org/index.php/Installation_Guide?action=render' >> ${work_dir}/$arch/airootfs/root/install.txt
 
-    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r '/root/customize_airootfs.sh' run
+    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r '/root/customized_airootfs.sh' run
     rm ${work_dir}/$arch/airootfs/root/customize_airootfs.sh
+    rm ${work_dir}/$arch/airootfs/root/customized_airootfs.sh
 }
 
 # Prepare kernel/initramfs ${install_dir}/boot/

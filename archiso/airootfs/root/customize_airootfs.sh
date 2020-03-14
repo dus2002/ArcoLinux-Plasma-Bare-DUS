@@ -6,7 +6,7 @@ count=0
 linux=$(pacman -Qq linux)
 linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
 kernelversion=$(uname -r)
-arch=$(uname -m)
+arch=defaultarch
 
 function layout() {
     count=$[count+1]
