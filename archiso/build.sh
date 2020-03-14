@@ -14,6 +14,7 @@ gpg_key=
 linux=$(pacman -Qq linux)
 linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
 kernelversion=$(uname -r)
+arch=$(uname -m)
 
 verbose=""
 script_path=$(readlink -f ${0%/*})
@@ -109,6 +110,7 @@ make_setup_mkinitcpio() {
       exec 17<>${work_dir}/gpgkey
     fi
     ARCHISO_GNUPG_FD=${gpg_key:+17} mkarchiso ${verbose} -w "${work_dir}/x86_64" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-* -g /boot/archiso.img' run
+    mkarchiso ${verbose} -w "${work_dir}/x86_64" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-* -g /boot/archiso.img' run
     if [[ ${gpg_key} ]]; then
       exec 17<&-
     fi
