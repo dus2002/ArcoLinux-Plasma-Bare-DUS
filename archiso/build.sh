@@ -86,7 +86,7 @@ make_basefs() {
     tput setaf 3;echo "2. Base installation and kernel";tput sgr0
     echo "###################################################################"
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" init
-    cp ${script_path}/mkinitcpio.conf ${work_dir}/$arch/airootfs/etc/mkinitcpio.conf
+    cp ${script_path}/mkinitcpio-airootfs.conf ${work_dir}/$arch/airootfs/etc/mkinitcpio.conf
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "$linux-broadcom-wl $linux $linux-headers" install
 }
 
