@@ -3,8 +3,8 @@
 # User = liveuser
 # Password = empty
 count=0
-linux=linux55
-linuxnumber=5.5
+linux=$(pacman -Qq linux)
+linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
 
 function layout() {
     count=$[count+1]
