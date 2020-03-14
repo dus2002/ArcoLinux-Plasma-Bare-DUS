@@ -193,7 +193,7 @@ make_prepare() {
     echo "###################################################################"
     cp -a -l -f ${work_dir}/$arch/airootfs ${work_dir}
     mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
-    mkarchiso -c lzo ${verbose} -w "${work_dir}" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
+    mkarchiso -c zstd ${verbose} -w "${work_dir}" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
     # rm -rf ${work_dir}/$arch/airootfs (if low space, this helps)
 }
 
