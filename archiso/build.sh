@@ -193,7 +193,6 @@ make_prepare() {
     cp -a -l -f ${work_dir}/x86_64/airootfs ${work_dir}
     mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
     mkarchiso -c lzo ${verbose} -w "${work_dir}" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
-    rm -rf ${work_dir}/airootfs
     # rm -rf ${work_dir}/x86_64/airootfs (if low space, this helps)
 }
 
