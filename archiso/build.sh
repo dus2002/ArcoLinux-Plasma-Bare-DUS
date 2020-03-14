@@ -11,8 +11,9 @@ install_dir=arch
 work_dir=work
 out_dir=out
 gpg_key=
-linux=linux55
-linuxnumber=5.5
+linux=$(pacman -Qq linux)
+linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
+kernelversion=$(uname -r)
 
 verbose=""
 script_path=$(readlink -f ${0%/*})

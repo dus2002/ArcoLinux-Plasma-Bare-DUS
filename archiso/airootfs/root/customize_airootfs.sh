@@ -5,6 +5,7 @@
 count=0
 linux=$(pacman -Qq linux)
 linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
+kernelversion=$(uname -r)
 
 function layout() {
     count=$[count+1]
@@ -28,8 +29,8 @@ function Archiso() {
 }
 
 function Kernel() {
-    sed -i "s/*/$(pacman -Qq linux)/g" /etc/calamaresmod/modules/initcpio.conf
-	cp /lib/modules/$(uname -r)/vmlinuz /boot/vmlinuz-$linuxnumber-$(uname -m)
+    sed -i "s/*/$linux/g" /etc/calamaresmod/modules/initcpio.conf
+	cp /lib/modules/$kernelversion/vmlinuz /boot/vmlinuz-$linuxnumber-$(uname -m)
 }
 
 function RootShell() {
