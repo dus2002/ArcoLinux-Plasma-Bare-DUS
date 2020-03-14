@@ -71,14 +71,13 @@ make_pacman_conf() {
     local _cache_dirs
     _cache_dirs=($(pacman -v 2>&1 | grep '^Cache Dirs:' | sed 's/Cache Dirs:\s*//g'))
     sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${work_dir}/pacman.conf
-    cp -af ${script_path}/airootfs/root/customize_airootfs.sh ${work_dir}/$arch/root/customized_installation.sh
+    #cp -af ${script_path}/airootfs/root/customize_airootfs.sh ${work_dir}/$arch/root/customized_installation.sh
     #for $arch in $(cat ${script_path}/arch) do
          #echo "Patching files to install using $arch"
          #cat ${work_dir}/$arch/root/customized_installation.sh | sed -i "s/defaultarch/$arch/g" > ${work_dir}/$arch/root/customized_installation.sh
          #sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/$arch/pacman.conf > ${work_dir}/pacman.conf
          #iso_label="al-plasma-bare-dus-${iso_version}-$arch"
     #done
-    cp ${script_path}/mkinitcpio.conf ${work_dir}/$arch/airootfs/etc/mkinitcpio.conf
 }
 
 # Base installation, plus needed packages (airootfs)
@@ -87,6 +86,7 @@ make_basefs() {
     tput setaf 3;echo "2. Base installation and kernel";tput sgr0
     echo "###################################################################"
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" init
+    cp ${script_path}/mkinitcpio.conf ${work_dir}/$arch/airootfs/etc/mkinitcpio.conf
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "$linux-broadcom-wl $linux $linux-headers" install
 }
 
@@ -139,9 +139,10 @@ make_customize_airootfs() {
 
     #lynx -dump -nolist 'https://wiki.archlinux.org/index.php/Installation_Guide?action=render' >> ${work_dir}/$arch/airootfs/root/install.txt
 
-    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r '/root/customized_airootfs.sh' run
+    #mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r '/root/customized_airootfs.sh' run
+    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r '/root/customize_airootfs.sh' run
     rm ${work_dir}/$arch/airootfs/root/customize_airootfs.sh
-    rm ${work_dir}/$arch/airootfs/root/customized_airootfs.sh
+    #rm ${work_dir}/$arch/airootfs/root/customized_airootfs.sh
 }
 
 # Prepare kernel/initramfs ${install_dir}/boot/
