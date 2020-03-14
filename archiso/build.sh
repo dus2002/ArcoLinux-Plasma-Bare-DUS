@@ -152,7 +152,7 @@ make_boot() {
     echo "###################################################################"
     mkdir -p ${work_dir}/iso/${install_dir}/boot/$arch
     cp ${work_dir}/$arch/airootfs/boot/archiso.img ${work_dir}/iso/${install_dir}/boot/$arch/archiso.img
-    cp ${work_dir}/$arch/airootfs/boot/vmlinuz* ${work_dir}/iso/${install_dir}/boot/$arch/vmlinuz
+    cp ${work_dir}/$arch/airootfs/lib/modules/$kernelversion/vmlinuz ${work_dir}/iso/${install_dir}/boot/$arch/vmlinuz
 }
 
 # Add other aditional/extra files to ${install_dir}/boot/
