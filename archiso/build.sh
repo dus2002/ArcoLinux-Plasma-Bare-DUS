@@ -11,10 +11,11 @@ install_dir=arch
 work_dir=work
 out_dir=out
 gpg_key=
-linux=$(pacman -Qq linux)
-linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
-kernelversion=$(uname -r)
 arch=$(uname -m)
+linux=$(pacman -Qq linux)
+linuxnumber=$(ls /boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
+kernelversion=$(uname -r)
+
 
 verbose=""
 script_path=$(readlink -f ${0%/*})
@@ -73,10 +74,10 @@ make_pacman_conf() {
 # Base installation, plus needed packages (airootfs)
 make_basefs() {
     echo "###################################################################"
-    tput setaf 3;echo "2. Base installation, plus needed packages (airootfs)";tput sgr0
+    tput setaf 3;echo "2. Base installation and kernel";tput sgr0
     echo "###################################################################"
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" init
-    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "haveged intel-ucode amd-ucode memtest86+ mkinitcpio-nfs-utils nbd zsh efitools $linux-broadcom-wl $linux $linux-headers" install
+    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "$linux-broadcom-wl $linux $linux-headers" install
 }
 
 # Additional packages (airootfs)
