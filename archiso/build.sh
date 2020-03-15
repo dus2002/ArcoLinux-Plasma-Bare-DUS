@@ -16,7 +16,7 @@ script_path=$(readlink -f ${0%/*})
 arch=$(ls $script_path/packages* | cut -d "." -f2)
 linux=$(pacman -Qq linux)
 linuxnumber=$(ls /boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
-kernelversion=$(uname -r)
+kernelversion=$(ls /lib/modules/$linuxnumber*)
 
 
 
