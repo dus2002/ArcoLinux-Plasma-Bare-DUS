@@ -15,8 +15,8 @@ verbose=""
 script_path=$(readlink -f ${0%/*})
 arch=$(ls $script_path/packages* | cut -d "." -f2)
 linux=$(pacman -Qq linux)
-linuxnumber=$(ls /boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
-kernelversion=$(ls /lib/modules/$linuxnumber*)
+linuxnumber=$(ls $work_dir/$arch/boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
+kernelversion=$(ls $work_dir/$arch/lib/modules/$linuxnumber*)
 
 
 
