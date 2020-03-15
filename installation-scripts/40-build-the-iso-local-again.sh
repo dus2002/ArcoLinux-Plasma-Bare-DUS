@@ -134,11 +134,3 @@ echo "################################################################## "
 echo
 [ -d  $outFolder ] || mkdir $outFolder
 cp $buildFolder/archiso/out/arcolinux* $outFolder
-
-echo
-echo "################################################################## "
-tput setaf 2;echo "Phase 8 : Making sure we start with a clean slate next time";tput sgr0
-echo "################################################################## "
-echo
-echo "Deleting the build folder if one exists - takes some time"
-[ -d $buildFolder ] && sudo rm -rf $buildFolder
