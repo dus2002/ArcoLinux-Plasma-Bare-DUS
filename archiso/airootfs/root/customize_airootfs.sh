@@ -3,10 +3,11 @@
 # User = liveuser
 # Password = empty
 count=0
-linux=$(pacman -Qq linux)
-linuxnumber=$(ls /boot/vmlinuz*-$(uname -m) | cut -d "-" -f2|cut -d"-" -f2)
-kernelversion=$(uname -r)
 arch=defaultarch
+linux=$(pacman -Qq linux)
+linuxnumber=$(ls /boot/vmlinuz*-$arch | cut -d "-" -f2|cut -d"-" -f2)
+kernelversion=$(ls /lib/modules/$linuxnumber*)
+
 
 function layout() {
     count=$[count+1]
