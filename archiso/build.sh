@@ -133,7 +133,7 @@ make_customize_airootfs() {
     tput setaf 3;echo "4. Customize installation (airootfs)";tput sgr0
     echo "###################################################################"
     
-    cp -Rf ${script_path}/airootfs/* ${work_dir}/$arch/
+    cp -af ${script_path}/airootfs/* ${work_dir}/$arch/airootfs
 
     cp ${script_path}/pacman.conf.work_dir ${work_dir}/$arch/airootfs/etc/pacman.conf
 
