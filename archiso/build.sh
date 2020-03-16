@@ -200,10 +200,8 @@ make_prepare() {
     echo "###################################################################"
     tput setaf 3;echo "10. Build airootfs filesystem image";tput sgr0
     echo "###################################################################"
-	mv ${work_dir}/$arch/airootfs/boot/vmlinuz* ${work_dir}/$arch/airootfs/boot/vmlinuz-$linuxnumber-$arch
-    cp -a -l -f ${work_dir}/$arch/airootfs ${work_dir}
-    mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
-    mkarchiso -c zstd ${verbose} -w "${work_dir}" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
+    mkarchiso ${verbose} -w "${work_dir}/$arch/airootfs" -D "${install_dir}" pkglist
+    mkarchiso -c zstd ${verbose} -w "${work_dir}/$arch/airootfs" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
     # rm -rf ${work_dir}/$arch/airootfs (if low space, this helps)
 }
 
@@ -212,7 +210,7 @@ make_iso() {
     echo "###################################################################"
     tput setaf 3;echo "11. Build ISO";tput sgr0
     echo "###################################################################"
-    mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -P "${iso_publisher}" -A "${iso_application}" -o "${out_dir}" iso "${iso_name}-${iso_version}.iso"
+    mkarchiso ${verbose} -w "${work_dir}/$arch/airootfs" -D "${install_dir}" -L "${iso_label}" -P "${iso_publisher}" -A "${iso_application}" -o "${out_dir}" iso "${iso_name}-${iso_version}.iso"
 }
 
 # checks and sign
