@@ -174,6 +174,7 @@ createLiveUserFunc
 layout createLiveUserFunc
 Kernel
 layout Kernel
+getNewMirrorCleanAndUpgrade
 AURInstalls
 layout AURInstalls
 Archiso
