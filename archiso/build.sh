@@ -141,7 +141,7 @@ make_customize_airootfs() {
     #lynx -dump -nolist 'https://wiki.archlinux.org/index.php/Installation_Guide?action=render' >> ${work_dir}/$arch/airootfs/root/install.txt
 
     mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -r "/root/customize/customize_airootfs-$arch.sh" run
-    rm -R ${work_dir}/$arch/airootfs/root/customize_airootfs
+    rm -R ${work_dir}/$arch/airootfs/root/customize
 }
 
 # Prepare kernel/initramfs ${install_dir}/boot/
