@@ -32,8 +32,6 @@ function Archiso() {
 
 function Kernel() {
     sed -i "s/*/$linux/g" /etc/calamaresmod/modules/initcpio.conf
-	cp /lib/modules/$kernelversion/vmlinuz /boot/vmlinuz-$linuxnumber-$arch
-	cp /lib/modules/$kernelversion/vmlinuz /boot/vmlinuz-$linux
 }
 
 function RootShell() {
