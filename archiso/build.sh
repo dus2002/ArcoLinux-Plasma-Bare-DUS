@@ -200,6 +200,7 @@ make_prepare() {
     echo "###################################################################"
     tput setaf 3;echo "10. Build airootfs filesystem image";tput sgr0
     echo "###################################################################"
+	mv ${work_dir}/$arch/airootfs/boot/vmlinuz* ${work_dir}/$arch/airootfs/boot/vmlinuz-$linuxnumber-$arch
     cp -a -l -f ${work_dir}/$arch/airootfs ${work_dir}
     mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
     mkarchiso -c zstd ${verbose} -w "${work_dir}" -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
