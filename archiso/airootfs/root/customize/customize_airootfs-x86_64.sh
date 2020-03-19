@@ -32,6 +32,8 @@ function Archiso() {
 
 function Kernel() {
     sed -i "s/*/$linux/g" /etc/calamaresmod/modules/initcpio.conf
+    sed -i "s/1/$linuxnumber-$arch/g" /etc/calamaresmod/modules/unpackfs.conf
+    sed -i "s/defaultarch/$arch/g" /etc/calamaresmod/modules/unpackfs.conf
 }
 
 function RootShell() {
