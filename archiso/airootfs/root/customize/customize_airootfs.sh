@@ -23,7 +23,7 @@ function deleteXfceWallpapers() {
 }
 
 function AURInstalls() {
-	sudo -u liveuser yay --noconfirm -S dolphin-root-git p7zip-gui p7zip-zstd-codec hfsprogs git-gui-menuentry
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git p7zip-gui p7zip-zstd-codec hfsprogs git-gui-menuentry cpupower-gui
 }
 
 function Archiso() {
