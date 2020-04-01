@@ -78,6 +78,7 @@ boost-libs
 breeze
 breeze-gtk
 breeze-icons
+broadcom-wl-dkms
 brotli
 btrfs-progs
 bubblewrap

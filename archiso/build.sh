@@ -86,7 +86,7 @@ make_basefs() {
     echo "###################################################################"
     tput setaf 3;echo "2. Install kernel";tput sgr0
     echo "###################################################################"
-    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "$linux-broadcom-wl $linux $linux-headers" install
+    mkarchiso ${verbose} -w "${work_dir}/$arch" -C "${work_dir}/pacman.conf" -D "${install_dir}" -p "$linux $linux-headers" install
     linuxnumber=$(echo $linux | cut -d "x" -f2 | sed 's/./&./1')
     kernelversion=$(ls $work_dir/$arch/lib/modules | cut -f9 | sed '$d')
 }
