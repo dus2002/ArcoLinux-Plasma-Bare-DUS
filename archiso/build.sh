@@ -195,6 +195,72 @@ make_isolinux() {
     cp ${work_dir}/$arch/airootfs/usr/lib/syslinux/bios/ldlinux.c32 ${work_dir}/iso/isolinux/
 }
 
+# Prepare /EFI
+make_efi() {
+    echo "###################################################################"
+    tput setaf 3;echo "10. Prepare /EFI";tput sgr0
+    echo "###################################################################"
+    mkdir -p ${work_dir}/iso/EFI/boot
+    cp ${work_dir}/x86_64/airootfs/usr/share/efitools/efi/PreLoader.efi ${work_dir}/iso/EFI/boot/bootx64.efi
+    cp ${work_dir}/x86_64/airootfs/usr/share/efitools/efi/HashTool.efi ${work_dir}/iso/EFI/boot/
+
+    cp ${work_dir}/x86_64/airootfs/usr/lib/systemd/boot/efi/systemd-bootx64.efi ${work_dir}/iso/EFI/boot/loader.efi
+
+    mkdir -p ${work_dir}/iso/loader/entries
+    cp ${script_path}/efiboot/loader/loader.conf ${work_dir}/iso/loader/
+    cp ${script_path}/efiboot/loader/entries/uefi-shell-v2-x86_64.conf ${work_dir}/iso/loader/entries/
+    cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/iso/loader/entries/
+
+    sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+         s|%INSTALL_DIR%|${install_dir}|g" \
+        ${script_path}/efiboot/loader/entries/archiso-x86_64-usb.conf > ${work_dir}/iso/loader/entries/archiso-x86_64.conf
+
+    # EFI Shell 2.0 for UEFI 2.3+
+    curl -o ${work_dir}/iso/EFI/shellx64_v2.efi https://raw.githubusercontent.com/tianocore/edk2/UDK2018/ShellBinPkg/UefiShell/X64/Shell.efi
+    # EFI Shell 1.0 for non UEFI 2.3+
+    curl -o ${work_dir}/iso/EFI/shellx64_v1.efi https://raw.githubusercontent.com/tianocore/edk2/UDK2018/EdkShellBinPkg/FullShell/X64/Shell_Full.efi
+}
+
+# Prepare efiboot.img::/EFI for "El Torito" EFI boot mode
+make_efiboot() {
+    echo "###################################################################"
+    tput setaf 3;echo "11. Prepare efiboot.img::/EFI for "El Torito" EFI boot mode";tput sgr0
+    echo "###################################################################"
+    mkdir -p ${work_dir}/iso/EFI/archiso
+    truncate -s 64M ${work_dir}/iso/EFI/archiso/efiboot.img
+    mkfs.fat -n ARCHISO_EFI ${work_dir}/iso/EFI/archiso/efiboot.img
+
+    mkdir -p ${work_dir}/efiboot
+    mount ${work_dir}/iso/EFI/archiso/efiboot.img ${work_dir}/efiboot
+
+    mkdir -p ${work_dir}/efiboot/EFI/archiso
+    cp ${work_dir}/iso/${install_dir}/boot/x86_64/vmlinuz ${work_dir}/efiboot/EFI/archiso/vmlinuz.efi
+    cp ${work_dir}/iso/${install_dir}/boot/x86_64/archiso.img ${work_dir}/efiboot/EFI/archiso/archiso.img
+
+    cp ${work_dir}/iso/${install_dir}/boot/intel_ucode.img ${work_dir}/efiboot/EFI/archiso/intel_ucode.img
+    cp ${work_dir}/iso/${install_dir}/boot/amd_ucode.img ${work_dir}/efiboot/EFI/archiso/amd_ucode.img
+
+    mkdir -p ${work_dir}/efiboot/EFI/boot
+    cp ${work_dir}/x86_64/airootfs/usr/share/efitools/efi/PreLoader.efi ${work_dir}/efiboot/EFI/boot/bootx64.efi
+    cp ${work_dir}/x86_64/airootfs/usr/share/efitools/efi/HashTool.efi ${work_dir}/efiboot/EFI/boot/
+
+    cp ${work_dir}/x86_64/airootfs/usr/lib/systemd/boot/efi/systemd-bootx64.efi ${work_dir}/efiboot/EFI/boot/loader.efi
+
+    mkdir -p ${work_dir}/efiboot/loader/entries
+    cp ${script_path}/efiboot/loader/loader.conf ${work_dir}/efiboot/loader/
+    cp ${script_path}/efiboot/loader/entries/uefi-shell-v2-x86_64.conf ${work_dir}/efiboot/loader/entries/
+    cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/efiboot/loader/entries/
+
+    sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+         s|%INSTALL_DIR%|${install_dir}|g" \
+        ${script_path}/efiboot/loader/entries/archiso-x86_64-cd.conf > ${work_dir}/efiboot/loader/entries/archiso-x86_64.conf
+
+    cp ${work_dir}/iso/EFI/shellx64_v2.efi ${work_dir}/efiboot/EFI/
+    cp ${work_dir}/iso/EFI/shellx64_v1.efi ${work_dir}/efiboot/EFI/
+
+    umount -d ${work_dir}/efiboot
+}
+
 # Build airootfs filesystem image
 make_prepare() {
     echo "###################################################################"
@@ -272,5 +338,7 @@ run_once make_boot
 run_once make_boot_extra
 run_once make_syslinux
 run_once make_isolinux
+run_once make_efi
+run_once make_efiboot
 run_once make_prepare
 run_once make_iso
