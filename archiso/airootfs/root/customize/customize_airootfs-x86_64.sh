@@ -23,7 +23,7 @@ function deleteXfceWallpapers() {
 }
 
 function AURInstalls() {
-	sudo -u liveuser yay --noconfirm -S dolphin-root-git file-roller-kde-menuentry kde-servicemenus-fileroller p7zip-zstd-codec hfsprogs git-gui-menuentry cpupower-gui
+	sudo -u liveuser yay --noconfirm -S dolphin-root-git file-roller-kde-menuentry kde-servicemenus-fileroller p7zip-zstd-codec hfsprogs git-gui-menuentry cpupower-gui efc
 }
 
 function Archiso() {
